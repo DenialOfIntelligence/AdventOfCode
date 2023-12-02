@@ -28,8 +28,8 @@ fn parse(line: &str) -> Option<Item>{
     }
     
     let item:Option<Item> = Some(Item{
-        first: v.first().unwrap().clone(),
-        second: v.last().unwrap().clone(),
+        first: *v.first().unwrap(),
+        second: *v.last().unwrap(),
         total: 0
     });
     
@@ -47,7 +47,7 @@ fn main() {
     
     for mut item in results {
         item.calc();
-        total= total + u128::from(item.total);
+        total += u128::from(item.total);
     }
     println!("Our result is: {total}")
 }
